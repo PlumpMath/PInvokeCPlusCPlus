@@ -21,6 +21,8 @@
 
             GetCustomers();
 
+            GetColumnTotal();
+
             GetRowTotals();
 
             Console.Read();
@@ -142,6 +144,27 @@
                 Console.WriteLine("Account number: {0}", customer.AccountNumber);
             }
 
+            Console.WriteLine("------------------------------");
+        }
+
+        static void GetColumnTotal()
+        {
+            var totalRows = 9;
+
+            var values = new int[totalRows];
+
+            for (var i = 0; i < totalRows; i++)
+            {
+                values[i] = i + 1;
+            }
+
+            var handle = GCHandle.Alloc(values, GCHandleType.Pinned);
+
+            var result = UnmanagedProxy.GetColumnTotal(handle.AddrOfPinnedObject(), totalRows);
+
+            handle.Free();
+
+            Console.WriteLine(result);
             Console.WriteLine("------------------------------");
         }
 

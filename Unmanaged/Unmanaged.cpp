@@ -66,6 +66,18 @@ extern "C" __declspec(dllexport) Customer** getCustomers()
 	return returnArray;
 }
 
+extern "C" __declspec(dllexport) int getColumnTotal(int* array, int totalRows)
+{
+	int returnValue = 0;
+	
+	for (int i = 0; i < totalRows; i++)
+	{
+		returnValue += array[i];
+	}
+
+	return returnValue;
+}
+
 extern "C" __declspec(dllexport) int* getRowTotals(int* array, int totalRows, int totalColumns)
 {
 	int* returnArray = new int[totalRows];

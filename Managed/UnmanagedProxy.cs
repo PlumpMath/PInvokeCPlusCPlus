@@ -26,6 +26,9 @@
         [DllImport("Unmanaged.dll", EntryPoint = "getCustomers", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr GetCustomers();
 
+        [DllImport("Unmanaged.dll", EntryPoint = "getColumnTotal", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr GetColumnTotal(IntPtr array, int totalRows);
+
         [DllImport("Unmanaged.dll", EntryPoint = "getRowTotals", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr GetRowTotals(IntPtr array, int totalRows, int totalColumns);
     }
