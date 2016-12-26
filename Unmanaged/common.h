@@ -15,3 +15,11 @@ public:
 	int Quantity;
 	double SalesTax;
 };
+
+class Customer
+{
+public:
+	char* FirstName;
+	char* LastName;
+	int AccountNumber;
+};

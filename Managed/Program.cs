@@ -19,6 +19,10 @@
 
             GetTotalCost();
 
+            GetCustomers();
+
+            GetRowTotals();
+
             Console.Read();
         }
 
@@ -116,6 +120,63 @@
             handle.Free();
 
             Console.WriteLine("Total Cost = {0}", result);
+            Console.WriteLine("------------------------------");
+        }
+
+        static void GetCustomers()
+        {
+            var totalExpected = 2;
+
+            var customerArrayPointer = UnmanagedProxy.GetCustomers();
+
+            var pointers = new IntPtr[totalExpected];
+
+            Marshal.Copy(customerArrayPointer, pointers, 0, totalExpected);
+
+            for (var i = 0; i < totalExpected; i++)
+            {
+                var customer = Marshal.PtrToStructure<Customer>(pointers[i]);
+
+                Console.WriteLine("First name: {0}", customer.FirstName);
+                Console.WriteLine("Last name: {0}", customer.LastName);
+                Console.WriteLine("Account number: {0}", customer.AccountNumber);
+            }
+
+            Console.WriteLine("------------------------------");
+        }
+
+        static void GetRowTotals()
+        {
+            var totalRows = 3;
+            var totalColumns = 3;
+
+            var values = new int[totalRows, totalColumns];
+
+            values[0, 0] = 1;
+            values[0, 1] = 2;
+            values[0, 2] = 3;
+
+            values[1, 0] = 4;
+            values[1, 1] = 5;
+            values[1, 2] = 6;
+
+            values[2, 0] = 7;
+            values[2, 1] = 8;
+            values[2, 2] = 9;
+
+            var handle = GCHandle.Alloc(values, GCHandleType.Pinned);
+
+            var pointer = UnmanagedProxy.GetRowTotals(handle.AddrOfPinnedObject(), totalRows, totalColumns);
+
+            var rowValues = new int[totalRows];
+
+            Marshal.Copy(pointer, rowValues, 0, totalRows);
+
+            foreach (var item in rowValues)
+            {
+                Console.WriteLine(item);
+            }
+
             Console.WriteLine("------------------------------");
         }
     }

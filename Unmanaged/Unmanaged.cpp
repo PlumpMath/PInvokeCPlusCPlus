@@ -48,3 +48,45 @@ extern "C" __declspec(dllexport) double getTotalCost(LineItem** lineItems, int t
 
 	return returnValue;
 }
+
+extern "C" __declspec(dllexport) Customer** getCustomers()
+{
+	Customer** returnArray = new Customer*[2];
+
+	returnArray[0] = new Customer();
+	returnArray[0]->FirstName = "Josue";
+	returnArray[0]->LastName = "Garcia";
+	returnArray[0]->AccountNumber = 123456789;
+
+	returnArray[1] = new Customer();
+	returnArray[1]->FirstName = "Natalie";
+	returnArray[1]->LastName = "Giannios";
+	returnArray[1]->AccountNumber = 987654321;
+
+	return returnArray;
+}
+
+extern "C" __declspec(dllexport) int* getRowTotals(int* array, int totalRows, int totalColumns)
+{
+	int* returnArray = new int[totalRows];
+
+	int currentIndex = -1;
+	
+	int currentRowTotal;
+
+	for (int row = 0; row < totalRows; row++)
+	{
+		currentRowTotal = 0;
+
+		for (int column = 0; column < totalColumns; column++)
+		{
+			currentIndex++;
+
+			currentRowTotal += array[currentIndex];
+		}
+
+		returnArray[row] = currentRowTotal;
+	}
+
+	return returnArray;
+}
