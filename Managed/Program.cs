@@ -168,6 +168,8 @@
 
             var pointer = UnmanagedProxy.GetRowTotals(handle.AddrOfPinnedObject(), totalRows, totalColumns);
 
+            handle.Free();
+
             var rowValues = new int[totalRows];
 
             Marshal.Copy(pointer, rowValues, 0, totalRows);
