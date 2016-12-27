@@ -19,6 +19,8 @@
 
             GetTotalCost();
 
+            GetCustomer();
+
             GetCustomers();
 
             GetColumnTotal();
@@ -125,6 +127,21 @@
             Console.WriteLine("------------------------------");
         }
 
+        static void GetCustomer()
+        {
+            var pointer = UnmanagedProxy.GetCustomer();
+
+            var customer = Marshal.PtrToStructure<Customer>(pointer);
+
+            Console.WriteLine("First name: {0}", customer.FirstName);
+            Console.WriteLine("Last name: {0}", customer.LastName);
+            Console.WriteLine("Account number: {0}", customer.AccountNumber);
+
+            Console.WriteLine("------------------------------");
+
+            Marshal.FreeCoTaskMem(pointer);
+        }
+
         static void GetCustomers()
         {
             var totalExpected = 2;
@@ -145,6 +162,8 @@
             }
 
             Console.WriteLine("------------------------------");
+
+            Marshal.FreeCoTaskMem(customerArrayPointer);
         }
 
         static void GetColumnTotal()

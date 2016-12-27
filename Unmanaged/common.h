@@ -19,6 +19,7 @@ public:
 class Customer
 {
 public:
+	Customer() {}
 	char* FirstName;
 	char* LastName;
 	int AccountNumber;

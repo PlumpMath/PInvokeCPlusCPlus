@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "common.h"
+#include <objbase.h>
+#include <vector>
 
 extern "C" __declspec(dllexport) int add(int parm1, int parm2)
 {
@@ -49,9 +51,24 @@ extern "C" __declspec(dllexport) double getTotalCost(LineItem** lineItems, int t
 	return returnValue;
 }
 
+extern "C" __declspec(dllexport) Customer* getCustomer()
+{
+	void * allocation = CoTaskMemAlloc(sizeof(Customer));
+
+	Customer* returnObject = new (allocation) Customer;
+
+	returnObject->FirstName = "Jerry";
+	returnObject->LastName = "Jones";
+	returnObject->AccountNumber = 999999999;
+
+	return returnObject;
+}
+
 extern "C" __declspec(dllexport) Customer** getCustomers()
 {
-	Customer** returnArray = new Customer*[2];
+	void * allocation = CoTaskMemAlloc(sizeof(Customer) * 2);
+
+	Customer** returnArray = new (allocation) Customer*[2];
 
 	returnArray[0] = new Customer();
 	returnArray[0]->FirstName = "Josue";
