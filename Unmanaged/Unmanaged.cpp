@@ -60,6 +60,7 @@ extern "C" __declspec(dllexport) Customer* getCustomer()
 	returnObject->FirstName = "Jerry";
 	returnObject->LastName = "Jones";
 	returnObject->AccountNumber = 999999999;
+	returnObject->IsActive = false;
 
 	return returnObject;
 }
@@ -74,11 +75,13 @@ extern "C" __declspec(dllexport) Customer** getCustomers()
 	returnArray[0]->FirstName = "Josue";
 	returnArray[0]->LastName = "Garcia";
 	returnArray[0]->AccountNumber = 123456789;
+	returnArray[0]->IsActive = true;
 
 	returnArray[1] = new Customer();
 	returnArray[1]->FirstName = "Natalie";
 	returnArray[1]->LastName = "Giannios";
 	returnArray[1]->AccountNumber = 987654321;
+	returnArray[1]->IsActive = true;
 
 	return returnArray;
 }

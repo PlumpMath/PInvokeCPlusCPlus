@@ -14,6 +14,7 @@ public:
 	double Price;
 	int Quantity;
 	double SalesTax;
+	bool IncludeGiftReceipt;
 };
 
 class Customer
@@ -23,4 +24,5 @@ public:
 	char* FirstName;
 	char* LastName;
 	int AccountNumber;
+	bool IsActive;
 };

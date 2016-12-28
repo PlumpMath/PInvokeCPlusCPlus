@@ -77,7 +77,8 @@
                 Name = "Jersey",
                 Price = 89.99,
                 Quantity = 1,
-                SalesTax = .08
+                SalesTax = .08,
+                IncludeGiftReceipt = true
             };
 
             var result = UnmanagedProxy.GetCost(lineItem);
@@ -95,7 +96,8 @@
                 Name = "Jersey",
                 Price = 89.99,
                 Quantity = 2,
-                SalesTax = .08
+                SalesTax = .08,
+                IncludeGiftReceipt = true
             };
 
             lineItems[1] = new LineItem
@@ -103,7 +105,8 @@
                 Name = "Runing shoes",
                 Price = 79.95,
                 Quantity = 1,
-                SalesTax = .12
+                SalesTax = .12,
+                IncludeGiftReceipt = false
             };
 
             // create the array of pointers
@@ -136,7 +139,7 @@
             Console.WriteLine("First name: {0}", customer.FirstName);
             Console.WriteLine("Last name: {0}", customer.LastName);
             Console.WriteLine("Account number: {0}", customer.AccountNumber);
-
+            Console.WriteLine("Is Active: {0}", customer.IsActive);
             Console.WriteLine("------------------------------");
 
             Marshal.FreeCoTaskMem(pointer);
@@ -159,6 +162,7 @@
                 Console.WriteLine("First name: {0}", customer.FirstName);
                 Console.WriteLine("Last name: {0}", customer.LastName);
                 Console.WriteLine("Account number: {0}", customer.AccountNumber);
+                Console.WriteLine("Is Active: {0}", customer.IsActive);
             }
 
             Console.WriteLine("------------------------------");
